@@ -26,9 +26,12 @@ printf("0. 프로그램 종료");
 //   새로운 도서정보는 항상 배열의 마지막 요소 다음위치에 저장하고, 배열이 가득찬 경우 저장할수 없다는 적절한 메세지 출력
 void addBook(){
     for(i = 0; i<LENGTH; i++){
+        if(LENGTH != (i+1){
         printf("신규 책 번호 입력 >>>"); scanf("%d", &books[i].bNo);
         printf("신규 책 제목 입력 >>>"); scanf("%s", books[i].bName);
         printf("신규 책 저자 입력 >>>"); scanf("%s", books[i].author);
+        }
+        printf("배열이 가득찼습니다.")
     }
 }
 

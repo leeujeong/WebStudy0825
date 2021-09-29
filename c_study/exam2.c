@@ -32,7 +32,7 @@ void inputinfomation(){
 //5. 학생정보구조체 배열에 저장된 모든 학생정보를 파일에 저장하는함수를 구현하시어
 //  파일명은 score.csv , "이름, 국어, 영어, 수학, 총점, 평균" 과 같은 형식으로 저장
 void generateFile(){
-    FILE * f = fopen("score.csv","wt");
+    FILE * f = fopen("score.csv","w");
     if(f ==NULL){
         fprintf(stderr, "file open error\n");
         return;
