@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* class ="a" */
+        .a{
+            color: blue;
+        }
+        /* id = "c" */
+        #c{
+            color: blueviolet;
+        }
+        /*<ul><li><a><a><li><ul>*/
+        ul>li{
+            background-color: green;
+        }
+        ul a, ul>li>a{
+            background-color: red;
+            text-decoration: none; /*밑줄 없애기*/
+        }
+        /* 잘못된 테이블 구조 */
+        table>tr>td{
+            color: yellow;
+        }
+        /* 정상적인 태이블구조*/
+        table>tbody>tr>td{
+            color: yellow;
+        }
+        .d>h1{
+            color: red;
+        }
+        .d>h1+h3{
+            color: blue;
+        }
+        .d>h1~h3{
+            font-style: italic;
+        }
+        .d>h3{
+            background-color: aquamarine;
+        }
+        /* 구조 선택자 */
+        .e>h1:first-of-type{
+            color:red;
+        }
+        .e>h1:nth-of-type(2){
+            color: darkred;
+        }
+        .e>l1:last-of-type{
+            color: orangered;
+        }
+    </style>
+</head>
+<body>
+    <!--1. 클래스 선택자 : .클래스-->
+    <h1 class="a">안녕하세요</h1>
+    <h1 class="b">반갑습니다</h1>
+    <!--2. 아이디 선택자 : #아이디-->
+    <h1 id="c">HELLO</h1>
+    <!--3. 자식 선택자 : 부모>자식-->
+    <!--4. 후손 선택자 : 부모 후손-->
+    <ul>                                           <!--부모-->
+        <li>                                       <!--자식-->
+            <a href="https:google.com/">구글</a>    <!--후손-->
+        </li>
+        <li>
+            <a href="https:naver.com/">네이버</a>   <!--후손-->
+        </li>
+    </ul>
+    <!--주의 <tbody>태그는 생략해도 자동으로 추가된다. 따라서 아래 구조는 틀림-->
+    <table border="1">
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+    </table>
+    <!--올바른 구조-->
+    <table border="1">
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+    <!--5. 모든 형제 : 형제~형제-->
+    <!--6. 인접 형제 : 형제+형제-->
+    <div>
+        <h1>한국</h1>
+        <h3>일본</h3>
+        <h3>중국</h3>
+        <h3>호주</h3>
+        <h3>러시아</h3>
+    </div>
+    <!--7. 구조 선택자
+        first-of-type   : 첫번째 요소
+        first-child     : 첫번째 자식
+        last-of-type    : 마지막 요소
+        last-child      : 마지막 자식
+        nth-of-type(n)  : n번째 요소
+        nth-child(n)    : n번째 자식
+    -->
+    <div class="e">
+        <h1>자바</h1>        <!--.e>h1:first-of-type , .e>nth-of-type(1)-->
+        <h2>데이터베이스</h2>
+        <h3>HTML</h3>
+        <h1>CSS</h1>        <!--.e>h1:nth-of-type(2)-->
+        <h2>JS</h2>
+        <h3>JSP</h3>
+        <h1>Servlet</h1>    <!--e.>h1:last-of-type, .e>h1:nth-of-type(3)-->
+        <h2>Spring</h2>
+        <h3>Git</h3>
+    </div>
+</body>
+</html>
