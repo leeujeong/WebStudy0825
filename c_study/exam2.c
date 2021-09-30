@@ -19,7 +19,7 @@ Stuendt students[LENGTH];
 void inputinfomation(){
     int i;
     for(i =0; i<LENGTH; i++){
-    printf("학생 이름 >>>"); scanf("%[^\n]s",students[i].name);
+    printf("학생 %d 이름 >>>", i+1); scanf("%[^\n]s",students[i].name);
     printf("국어 >>>"); scanf("%d", &students[i].kor);
     printf("영어 >>>"); scanf("%d", &students[i].eng);
     printf("수학 >>>"); scanf("%d", &students[i].math);
