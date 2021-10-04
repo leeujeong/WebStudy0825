@@ -1,3 +1,4 @@
+#include <stdio.h>
 //1. 도서정보 저장 구조체
 typedef struct book{
     int  bNo;
