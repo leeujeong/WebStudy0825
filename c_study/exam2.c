@@ -18,11 +18,14 @@ Stuendt students[LENGTH];
 //  이름은 공백입력 가능하도록 처리, 국어 영어 수학 점수만 입력하면 총점과 평균은 자동으로 계산된뒤 저장되도록 처리
 void inputinfomation(){
     int i;
-    for(i =0; i<LENGTH; i++){
-    printf("학생 %d 이름 >>>", i+1); scanf("%[^\n]s",students[i].name);
-    printf("국어 >>>"); scanf("%d", &students[i].kor);
-    printf("영어 >>>"); scanf("%d", &students[i].eng);
-    printf("수학 >>>"); scanf("%d", &students[i].math);
+    printf("학생 이름 >>>"); 
+    gets(students[i].name);
+    printf("국어 >>>");
+    scanf("%d", &students[i].kor);
+    printf("영어 >>>");
+    scanf("%d", &students[i].eng);
+    printf("수학 >>>");
+    scanf("%d", &students[i].math);
     students[i].sum = students[i].kor +students[i].eng +students[i].math;
     students[i].avg = students[i].sum / 3;
     }
