@@ -58,6 +58,59 @@
             border-top: 1px solid black;
             border-bottom: 2px solid black;
         }
+        /* box == image (original size) */
+        .image_box1 {
+            width: 1920px;
+            height: 1280px;
+            background-image: url(../CSS/naver.png);
+            background-size: 1920px 1280px; /* 너비 높이 순서 */
+        }
+        /* box == image (small size : 1/4크기로 조정,  1920 * 1280 크기의 1/4크기 480 * 320) */
+        .image_box2 {
+            width: 480px;
+            height: 320px;
+            background-image: url(../CSS/naver.png);
+            background-size: 480px 320px; /* 너비 높이 순서 */
+        }
+        /* box > image (박스가 이미지보다 큰 경우)*/
+        .image_box3 {
+            width: 1920px;
+            height: 1200px;
+            background-image: url(../CSS/naver.png);
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .image_box4 {
+            /* 텍스트 */
+            font-size: 80px;
+            color: white;
+            text-align: center; /* 가로 정렬 */
+            padding-top: 400px; /* 세로 정렬 위해서 */
+
+            box-sizing: border-box; 
+            width: 1280px;
+            height: 972px;
+            background-image: url(../CSS/naver.png);
+            background-size: 1280px 972px;
+            background-repeat: no-repeat;
+
+            border: 5px solid gray;
+        }
+        /* box < image (박스가 이미지보다 작은 경우) */
+        .image_box5 {
+            width: 300px;
+            height: 300px;
+            background-image: url(../CSS/naver.png);
+            background-size: cover;
+            border: 1px solid black;
+        }
+        .image_box6 {
+            width: 400px;
+            height: 300px;
+            background-image: url(../CSS/naver.png);
+            background-size: contain;
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -99,5 +152,16 @@
     <div class="box8">
         보더 박스
     </div>
+
+    <!-- background-img -->
+    <div class="image_box1"></div>
+    <div class="image_box2"></div>
+    <div class="image_box3"></div>
+    <div class="image_box4">
+        가라는 회사는 안 가고<br>
+        이래도되나 싶다.
+    </div>
+    <div class="image_box5"></div>
+    <div class="image_box6"></div>
 </body>
 </html>
