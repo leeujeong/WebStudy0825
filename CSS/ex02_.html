@@ -5,50 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        .image_area > img{
+            width: 300px;
+            height: 300px;
+            margin-bottom: 10px;
+        }
         .container{
-            width: 640px;
+            width: 300px;
+            height: 600px;
+            border: 1px solid black;
             margin: 0 auto;
         }
-        .image_area{
-            width: 640px;
-            height: 427px;
-            background-image: url(../imagespple.jpeg);
-            background-size: 640px 427px;
-        }
-        .content_area {
-            border: 1px solid silver;
-        }
-        .content_area >h2{
-            padding: 5px;
-            background-color:  black;
-            color: white;
-        }
-        .content_area > title {
-            color: red;
-            font-size: 1.5em;   /* 부모기준 1.5배 크기(h2 태그의 크기를 의미) */
-            font-weight: 900px;
+        .content_area{
             text-align: center;
         }
+        h2 {
+            background-color: black;
+            color:white;
+            padding-left:  10px;
+        }
+        .title{
+            color: red;
+            margin-bottom: 15px;
+        }
+        .content_area > span{
+            color: blue;
+        }
+
     </style>
 </head>
 <body>
-    <!-- 전체 화면 -->
-    <div class="conatiner">
-        <!-- 이미지 구역 -->
-        <div class="image_area"></div>
-        <!-- 본문 구역-->
-        <div class="content_area">
+    <div class="container">
+        <div class="image_area">
+            <img src="#">
+        </div>
         <h2>확인하세요</h2>
-
-        <div class="title">주문 및 배송</div>
-        <span class="blue">오늘 주문하시면</span>오늘안에 배송가능
-        <hr>
-        <div class="title">교환 및 환불</div>
-        오늘 주문하시면 <span>모해줗까</span>
-        <hr>
-        <div class="title">고객센터</div>
-        랄랄랄
-        <span class="litle">작은 글씨</span>
+        <div class="content_area">
+            
+            <div class="title">주문 및 배송 </div>
+            <span>오늘은</span>주문하시면 할인해줗께용
+            <hr>
+            <div class="title">주문 및 배송 </div>
+            <span>오늘은</span>주문하시면 할인해줗께용
+            <hr>
+            <div class="title">주문 및 배송 </div>
+            <span>오늘은</span>주문하시면 할인해줗께용
+        </div>
     </div>
 </div>    
 </body>
