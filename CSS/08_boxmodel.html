@@ -101,15 +101,33 @@
             width: 300px;
             height: 300px;
             background-image: url(../CSS/naver.png);
-            background-size: cover;
+            background-size: cover;     /* 너비, 높이 중 작은 겂에 맞춰 이미지를 넣어줌 */
             border: 1px solid black;
         }
         .image_box6 {
             width: 400px;
             height: 300px;
             background-image: url(../CSS/naver.png);
-            background-size: contain;
+            background-size: contain;   /* 너비, 높이 중 큰 겂에 맞춰 이미지를 넣어줌 */
             border: 1px solid black;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        /* image 일부 사용 */
+        .image_box7 {
+            width: 100px;
+            height: 100px;
+            background-image: url(../CCS/logos.png);
+            background-position: 20px 0;
+        }
+        /* backgound-image + background-color */
+        .image_box8{
+            width: 960px;
+            height: 640px;
+            background-image: url(../CCS/wall.jpg);
+            background-size: 100% 100%;
+            background-blend-mode: multiply;    /* 셀로판지 */
+            background-color: darkgray;
         }
     </style>
 </head>
@@ -163,5 +181,7 @@
     </div>
     <div class="image_box5"></div>
     <div class="image_box6"></div>
+    <div class="image_box7"></div>
+    <div class="image_box8"></div>
 </body>
 </html>
