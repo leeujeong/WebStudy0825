@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 900px;
+            margin: 0 auto;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        caption{
+            font-weight: 900;
+            font-size: 30px;
+        }
+        .blue{
+            padding: 10px;
+            background-color: navy;
+            color: white;
+            border: 1px solid black;
+        }
+        td{
+            padding: 10px;
+            border: 1px solid black;
+        }
+        .long{
+            width: 70px;
+        }
+        .short{
+            width: 30px;
+        }
+        .introduce{
+            width: 100%;
+        }
+        .btn{
+            margin-top: 20px;
+            width: 200px;
+            height: 50px;
+            background-color: navy;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <form action="#" method="POST" enctype="multipart/form-data">
+             <table>
+            <caption>개인정보입력 폼</caption>
+            <tbody>
+                <tr>
+                    <th class="blue" colspan="2">개인정보</th>
+                </tr>
+                <tr>
+                    <td>주민등록번호</td>
+                    <td>
+                        <input type="text" name="first" class="long">
+                        -
+                        <input type="text" name="last"class="long">
+                        <input type="button" value="검증">
+                    </td>
+                </tr>
+                <tr>
+                    <td>생일</td>
+                    <td>
+                        <input type="text" name="year" class="short">&nbsp년
+                        <input type="text" name="month" class="short">&nbsp월
+                        <input type="text" name="day" class="short">&nbsp일
+                    </td>
+                </tr>
+                <tr>
+                    <td>성별</td>
+                    <td>
+                        <input id="male" type="radio" name="gender">
+                        <label for="male">남자</label>
+                        <input id="female" type="radio" name="gender">
+                        <label for="female">여자</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>관심분야</td>
+                    <td>
+                        <input id="travel" type="checkbox" name="hobby">
+                        <label for="travel">여행</label>
+                        <input id="movie" type="checkbox" name="hobby">
+                        <label for="movie">영화</label>
+                        <input id="reading" type="checkbox" name="hobby">
+                        <label for="reading">독서</label>
+                        <input id="music" type="checkbox" name="hobby">
+                        <label for="music">음악</label>
+                        <input id="none" type="checkbox" name="hobby">
+                        <label for="none">관심없음</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>자기소개</td>
+                    <td>
+                        <textarea class="introduce" name="introduce" rows="7"></textarea>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">
+                            <input class="btn" type="submit" value="수정완료">
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
