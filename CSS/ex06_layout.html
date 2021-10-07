@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <style>
+        html{
+            height: 100%;
+            font-size: 14px;
+            font-family:'Noto Sans KR', sans-serif;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+        .wrap{
+        height: 100%;
+        }
+        .header{
+            padding-bottom: 69px;
+        }
+        .header > .header_inner{
+            width: 743px;
+            height: 163px;
+            margin:0 auto ;
+            position: relative;
+            padding-top:111px ;
+        }
+        .header .logo{
+            display: block;
+            margin: 0 auto ;
+            width: 244px;
+            height: 49px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_c860f0da.png);
+            background-size: 244px 94px;
+        }
+        .header .blind{
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .header .lang{
+            position: absolute;
+            top: 20px;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <div class="header_inner">
+                <a href="https://www.naver.com" class="logo">
+                    <h1 class="blind">NAVER</h1>
+                </a>
+                <div class="lang">
+                    <select name="local_switch">
+                        <option value="ko_KR">한국어</option>
+                        <option value="en_US">English</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+    </div>
+</body>
+</html>
