@@ -92,6 +92,9 @@
         .menu_id{
             border-radius: 5px 0 0 0;;
         }
+        .menu_once{
+            border-width: 1px 0;
+        }
         .menu_qr{
             border-radius: 0 5px 0 0;
         }
@@ -152,6 +155,9 @@
             border: 1px solid #dadada;
             padding: 17px 18px 17px 19px;
         }
+        .input_row:first-of-type{
+            border-bottom-width: 0, none;
+        }
         .icon_cell{
             display: table-cell;
             width: 26px;
@@ -199,6 +205,57 @@
             font-weight: 900;
             color: white; 
         }
+        .find_wrap, .footer_link {
+            padding: 24px 0 40px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+        .find_wrap > li + li ::before, .footer_link > li + li ::before{
+            content: "|";
+            display: inline-block;
+            width: 50px;
+        }
+        .banner_wrap{
+            width: 553px;
+            margin: 0 auto;
+        }
+        .banner_inner{
+            display: block;
+            border: 1px solid #dadada;
+            border-radius: 5px;
+        }
+        .banner_img{
+            border-radius: 5px;
+        }
+        .footer{
+            padding: 80px 0 32px;
+        }
+        .footer_link{
+           padding: 0;; 
+        }
+        .footer_copy{
+            width: 553px;
+            margin: 10px auto 0;
+            text-align: center;
+        }
+        .footer_logo{
+            display: inline-block;
+            /*보여줄 이미지 크가*/
+            width: 70px;
+            height: 15px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_c860f0da.png);
+            background-size: 244px 94px; /*본 이미지 크기*/
+            background-position: 0 -51px;
+        }
+        .crop{
+            font-size: 20px;
+            color: #646262;
+            font-weight: 900;
+        }
+        .text{
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -218,6 +275,7 @@
         </header>
         <div class="login_wrap">
             <ul class="menu_wrap">
+                <!--ID로그인 일회용번호 QR코드-->
                 <li class="menu_item">
                     <a href="#" class="menu_id">
                         <span class="menu_text">
@@ -240,6 +298,7 @@
                     </a>
                 </li>
             </ul>
+            <!--아이디 비밀번호 작성-->
             <form action="#" method="POST">
                 <ul class="panel_wrap">
                     <li class="panel_item"> 
@@ -278,6 +337,7 @@
                                         </span>     
                                     </div>
                                 </div>
+                                <!--로그인버튼-->
                                 <div class="btn_login_wrap">
                                     <button type="submit" class="btn_login">
                                         <span class="btn_text">로그인</span>
@@ -288,6 +348,47 @@
                     </li>
                 </ul>
             </form>
+        </div>
+        <!--아이디찾기 비밀번호 회원가입-->
+        <ul class="find_wrap">
+            <li><a href="#" target="_blank" class="find_text">비밀번호 찾기</a></li>
+            <li><a href="#" target="_blank" class="find_text">아이디 찾기</a></li>
+            <li><a href="#" target="_blank" class="find_text">회원가입</a></li>
+        </ul>
+        <!--banner-->
+        <div class="banner_wrap">
+            <a class="banner_inner" href="#" target="_blank">
+                <img class="banner_img" width="100%" height="100%" src="https://ssl.pstatic.net/static/nid/login/banner/m_banner_qrcheckin_920.jpg" >
+            </a>
+        </div>
+        <!--footer-->
+        <div class="footer">
+            <div class="footer_inner">
+                <ul class="footer_link">
+                    <li>
+                        <a href="#" target="_blank" class="footer_item">이용약관</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="footer_item">개인정보처리방침</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="footer_item">책임과 한계의 법적고지</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="footer_item">회원정보 고객센터</a>
+                    </li>
+                </ul>
+                <div class="footer_copy">
+                    <a href="#" target="_blank">
+                        <span class="footer_logo">
+                            <span class="blind" style="display: none;">네이버</span>
+                        </span>
+                    </a>
+                    <span class="text">Copyright</span>
+                    <span class="crop">&copy; NAVER Crop</span>
+                    <span class="text">All Right Reserved.</span>
+                </div>
+            </div>
         </div>
     </div>
 </body>
