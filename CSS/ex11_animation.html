@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        ul,ol{
+            list-style-type: none;
+        }
+        .container{
+            width: 930px;
+            padding-top: 20px;
+            margin: 0 auto;
+        }
+        .fruit_list{
+            display: flex;
+            justify-content: space-between;
+        }
+        .fruit{
+            position: relative;
+        }
+        .fruit_image{
+            width: 300px;
+            height: 200px;
+            background-size: 300px 200px;
+        }
+        #fruit1 { background-image: url(../images/fruit1.jpg); }
+        #fruit2 { background-image: url(../images/fruit2.jpg); }
+        #fruit3 { background-image: url(../images/fruit3.jpg); }
+        .fruit_description{
+            width: 300px;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding-top: 50px;
+            color: white;
+            line-height: 1.5;
+            position: absolute;
+            opacity: 0;
+            transition: transform 1s opacity 1s;
+        }
+        .first_image:hover + .fruit_description{
+            transform: translateY(-200px);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="fruit_list">
+            <li class="fruit">
+                <div class="fruit_image" id="fruit1">
+                </div>
+                <div class="fruit_description">
+                    <h1>과일1</h1>
+                    <p>맛있는 과일</p>
+                    <p>가격 : 10,000원</p>
+                </div>
+            </li>
+            <li class="fruit">
+                <div class="fruit_image" id="fruit2">
+                </div>
+                <div class="fruit_description">
+                    <h1>과일2</h1>
+                    <p>싱싱한 과일</p>
+                    <p>가격 : 20,000원</p>
+                </div>
+            </li>
+            <li class="fruit">
+                <div class="fruit_image" id="fruit3">
+                </div>
+                <div class="fruit_description">
+                    <h1>과일3</h1>
+                    <p>상큼한 과일</p>
+                    <p>가격 : 30,000원</p>
+                </div>
+            </li>
+        </ul>
+        <div>ㅎㅎㅎㅎㅎㅎㅎ</div> 
+</body>
+</html>
