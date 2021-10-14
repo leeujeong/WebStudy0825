@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--1. 선언적 함수-->
+    <script>
+        func1();
+        function func1(){
+            console.log('func1() 함수본문');
+        }
+        func1();
+
+        func2('정승호', 31);
+        function func2(name, age){      //매개변수 선언(var, let, const) 없이 변수명만 작성한다.
+            console.log('이름 : '+ name + '나이 : '+ age);
+        }
+        func2('이유정',27);
+    </script>
+
+    <!--2. 익명 함수-->
+    <script>
+        // 1. 일반익명함수
+        let func3= function(){
+            console.log('일반 익명 함수 본문');
+        }
+        func3();    //변수를 함수처럼 사용
+
+        // 2. 화살표 함수
+        let func4 = () =>{
+            console.log('화살표 함수 본문');
+        }
+        func4();
+
+        // 3. 연습
+        let func5 = function(age){
+            if (age < 20){
+                console.log('미성년자');
+            }else {
+                console.log('성인');
+            }
+        } 
+        func5(25);
+
+        let func6 = (age)=>{
+            if (age < 20){
+                console.log('미성년자');
+            }else {
+                console.log('성인');
+            } 
+        }
+        func6(5);
+    </script>
+
+    <!--3. 콜백 함수-->
+    <script>
+        //1. 선언적 함수를 콜백으로 전달하기
+        function whoAreYou(name, age){
+            console.log('내 이름은 ' + name + '이고, 내 나이는 ' + age + '살입니다.');
+        }
+        function func7(callback, name, age){    // callback : 함수가 전달되는 매개변ㅇ수
+            callback(name, age);
+        }
+        func7(whoAreYou, '이유정', 27);         // 선언적 함수는 '함수명'을 전달한다.
+
+        //2. 익명함수를 콜백으로 전달하기
+        function func8(callback, name, age){
+            callback(name, age);
+        }
+        func8(function(name){
+            console.log('내 이름은 ' + name + '이고, 내 나이는 ' + age + '살입니다.');
+        }, '이유정', 27);
+        func8((name, age)=>{
+            consolelog('내 이름은 ' + name + '이고, 내 나이는 ' + age + '살입니다.');
+        }, '정승호', 31);
+
+        //3. 연습
+        function howMany(callback, count){
+            for(let i = 0; i < count; i++){
+                callback();
+            }
+        }
+        howMany(function(){
+            consloe.log('Hello World');
+        }, 3);      //전달된 함수가 3번 실행시켜 줌
+    </script>
+
+    <!--4. 자기 호출 함수-->
+    <script>
+        (function(name, age){
+            console.log('내 이름은 ' + name + '이고, 내년에는 ' + (age + 1) + '살입니다.');
+        })('이유정', 27);
+    </script>
+
+    <!--5. 인수와 매개변수-->
+    <script>
+        //1. 전개 연산자
+        function func9(...args){
+            console.log(args[0] + ', ' + args[1]);
+        }
+        func9();
+        func9(10);
+        func9(20, 30);
+
+        //2. 인수와 매개변수의 갯수
+        //   디폴트 처리하기
+        function func10(a, b){
+            //디폴트.a 가 undefined라면 100을 사용함.
+            //방법 1.
+            if (a == undefined){
+                a = 100;
+            }
+            //방법 2.
+            //undefined 는 false 로 인식한다.
+            if (!a){
+                a = 100;
+            }
+            //방법 3.
+            true || (a = 100);  //short curcuit evaluation
+                                // OR 연산자는 하나라도 true가 나오면 전체 결과가 true 이므로 더이상 연산을 진행하지 않는다.
+            false || (a = 100); //인수가 전달 안된 매개변수는 undefined 이므로 false와 같다.
+            a || (a = 100);     //a로 인수가 전달되지 않으면 false || (a = 100);으로 처리되므로 a = 100이 동작한다.
+
+            console.log(a + ', '+ b);
+        }
+        func10();
+        func10(40);
+        func10(50, 60);
+        func10(70, 80, 90);
+    </script>
+</body>
+</html>
