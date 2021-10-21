@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1. Date 객체-->
+    <script>
+        // 1. 현재 날짜와 시간
+        let now = new Date();
+        console.log(now);
+
+        // 2. 특정 날짜와 시간
+        let date1 = new Date(2021,9,18);    //월 : 0 ~ 11 사이로 사용함
+        let date2 = new Date(2021, 9, 18, 14, 20, 30);
+        let date3 = new Date('2021-10-18 14:20:30');
+        console.log(date1);
+        console.log(date2);
+        console.log(date3);
+
+        // 3. 년, 월, 일, 시, 분, 초 추출
+        let year = now.getFullYear();
+        let month = now.getMonth();
+        let day = now.getDate();
+        let hour = now.getHours();
+        let minute = now.getMinutes();
+        let second = now.getSeconds();
+        console.log(year, month, day, hour, minute, second);
+    </script>
+
+    <!-- 연습 1. 시계 만들기 -->
+    <div id="box1">
+        <h1 class="watch">
+            <span id="year"></span>년&nbsp;
+            <span id="month"></span>월&nbsp;
+            <span id="date"></span>일&nbsp;
+            <span id="day"></span>요일&nbsp;
+            <span id="hour"></span>시&nbsp;
+            <span id="minute"></span>분&nbsp;
+            <span id="second"></span>초&nbsp;
+        </h1>
+    </div>
+    <script>
+        // 1. 1초마다 반복 실행되는 setIntereval() 함수사용
+        //1000밀리초(1초)마다 function(){}이 실행된다.
+
+        setInterval(function(){
+            let now = new Date();
+            document.getElementById('year').textContent = now.getFullYear();
+            document.getElementById('month').textContent = fillZero(now.getMonth)()+1;
+            document.getElementById('date').textContent = fillZero(now.getDate());
+            let weekName = ['일', '월', '화', '수', '목', '금', '토'];
+            document.getElementById('day').textContent = weekName(now.getDay());
+            document.getElementById('hour').textContent = fillZero(now.getHours());
+            document.getElementById('minute').textContent = fillZero(now.getMinutes());
+            document.getElementById('second').textContent = fillZero(now.getSeconds());
+        },1000)
+
+        //2. setTimeout() 함수를 1초마다 호출
+        function watch(){
+            setTimeout(function(){
+            let now = new Date();
+            document.getElementById('year').textContent = now.getFullYear();
+            document.getElementById('month').textContent = fillZero(now.getMonth)()+1;
+            document.getElementById('date').textContent = fillZero(now.getDate());
+            let weekName = ['일', '월', '화', '수', '목', '금', '토'];
+            document.getElementById('day').textContent = weekName(now.getDay());
+            document.getElementById('hour').textContent = fillZero(now.getHours());
+            document.getElementById('minute').textContent = fillZero(now.getMinutes());
+            document.getElementById('second').textContent = fillZero(now.getSeconds());
+            watch();
+            },1000);
+        }
+        watch();    // watch()함수 실행
+
+
+        // 0 ~ 9 => 00 ~ 09
+        function fillZero(number){
+            if(number<10){
+                return '0' + number;
+            }else{
+                return number;
+            }
+        }
+    </script>
+
+    <!-- 연습2. D-Day 만들기 -->
+    <!--
+        2021-11-18을 Dday로 설정해서 아래와 같이 표시하시오.
+        1. D-DAY 30일 5시간 10분 15초
+        2. D-DAY 23시간 10분 15초
+        3. D-DAY 입니다.
+    -->
+    <div id="box2"></div>
+    <script>
+    // 1. 1초마다 반복 실행되는 setInterval() 함수 사용    
+    setInterval(function(){
+        document.getElementById('box2').innerHTML = getDay();
+    },1000)
+
+    // 2. setTimeout() 함수를 1초마다 호출
+    function dDay(){
+        setTimeout(function(){
+            document.getElementById('box2').innerHTML = getDay();
+            dDay();
+        },1000)
+    }
+    dDay();
+
+    function getDay(){
+        // 현재 날짜와 시간 생성
+        let today = new Date();
+        // 디데이 설정
+        let dDay = new Date(2021, 10, 18);
+        // new Date('2021-11-18'); 2021-11-18 09:00:00 생성 (우리나라는 UTC +9시)
+        // 두 날짜의 차이
+        let restTime = dDay - today;    // 차이가 밀리초(1/1000초)로 계산됨
+        restTime = parseInt(restTime/1000);
+        let second = restTime % 60;                 // 초
+        let minute = parseInt(restTime / 60) % 60;  // 분
+        let hour = parseInt(restTime / 3600) % 24;  // 시
+        let day = parseInt(restTime / 3600 / 24);   // 일
+        //결과 만들기
+        let result = 'D-DAY&nbsp;';
+        if(restTime>0){
+            if (day >0){
+                result += day + '일&nbsp;'; 
+            }
+            result += hour + '시&nbsp;' + minute + '분&nbsp;' + second + '초';
+        }else{
+            result += '입니다.'
+        }return result;
+    }
+    </script>
+        <!-- 2. Math 객체 -->
+        <script>
+            console.log('최댓값: ' + Math.max(1, 2, 3, 4, 5));
+            console.log('최솟값: ' + Math.min(1, 2, 3, 4, 5));
+            console.log('절대값: ' + Math.abs(-5));
+            console.log('제곱근(루트): ' + Math.sqrt(25));
+            console.log('난수: ' + Math.random());  // 0.0 <= 난수 < 1.0
+            console.log('올림: ' + Math.ceil(1.5));    // 1.5를 정수로 올림 == 2
+            console.log('반올림: ' + Math.round(1.5)); // 1.5를 정수로 반올림 == 2
+            console.log('내림: ' + Math.floor(1.5));   // 1.5를 정수로 내림 == 1 
+            console.log('절사: ' + Math.trunc(1.5));   // 1.5를 정수로 절사 == 1
+        </script>
+        <!-- 3. 문자열 -->
+        <script>
+
+            let str = 'JavaScript';
+    
+            // 1. 문자열 길이
+            console.log(str.length);
+    
+            // 2. 특정 문자만 추출하기
+            console.log(str.charAt(0), str.charAt(str.length - 1));  // 첫 글자와 마지막 글자
+    
+            // 3. 특정 문자열 추출하기
+            console.log(str.substring(0, 4));  // 0 <= 추출문자열 < 4
+            console.log(str.substring(4));     // 4 <= 끝까지 추출
+            console.log(str.substr(0, 4));     // 인덱스 0부터 4글자를 추출
+            console.log(str.substr(4));        // 인덱스 4부터 끝까지 추출
+    
+            // 4. 특정 문자열 위치 찾기(인덱스 찾기)
+            console.log(str.indexOf('a'));  // 발견된 첫 번째 문자열의 인덱스 반환
+            console.log(str.indexOf('j'));  // 대소문자를 구분해서 찾고, 못 찾으면 -1을 반환
+            console.log(str.lastIndexOf('a'));  // 발견된 마지막 문자열의 인덱스 반환
+    
+            // 5. 대소문자 변환
+            console.log(str.toLowerCase());  // 모두 소문자로 변환
+            console.log(str.toUpperCase());  // 모두 대문자로 변환
+    
+            // 6. 불필요한 공백 제거
+            //    좌우 공백 제거(중간 공백은 제거가 안 됨)
+            let str2 = '  Java  Script  ';
+            console.log(str2.trim());  // 좌우 공백 모두 제거
+            console.log(str2.trimRight());
+            console.log(str2.trimLeft());
+    
+            // 7. 문자열을 분리
+            //    구분자(separator)를 지정
+            //    구분된 각 문자열은 배열로 반환
+            let str3 = 'java,oracle,html,css,javascript';
+            let arr = str3.split(',');
+            console.log(arr);
+    
+            // 8. 배열의 모든 요소를 하나의 문자열로 연결
+            //    연결자를 지정
+            let str4 = arr.join(',');
+            console.log(str4);
+    
+            // 9. 찾아 바꾸기
+            let str5 = 'javascript는 java인가요? java가 아닌가요?';
+            str5 = str5.replace('java', 'ECMA');  // 첫 번째 java만 ECMA로 바꿈.
+            console.log(str5);
+    
+            // 10. 모두 찾아 바꾸기
+            //     내장된 기능이 없어서 직접 구현
+            //     replaceAll('문자열', '찾을문자열', '바꿀문자열')
+    
+            // 1) split(), join() 활용
+            function replaceAll(str, before, after) {
+                // str.split('java') : ['', '스크립트는 ', '인가요? ', '가 아닌가요?']
+                // str.split('java').join('자바') : '자바스크립트는 자바인가요? 자바가 아닌가요?'
+                return str.split(before).join(after);
+            }
+            // 2) replace(), indexOf() 활용
+            function replaceAll(str, before, after) {
+                while (true) {
+                    if (str.indexOf(before) == -1) {
+                        break;
+                    }
+                    str = str.replace(before, after);
+                }
+                return str;
+            }
+            let result = replaceAll('java스크립트는 java인가요? java가 아닌가요?', 'java', '자바');
+            console.log(result);
+        </script>
+    
+</body>
+</html>

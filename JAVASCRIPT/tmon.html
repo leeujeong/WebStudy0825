@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        onload = function(){
+            let userId = document.getElementById('userId');
+            let msg = document.getElementById('msg');
+
+            let regId = /^[a-zA-Z0-9-_]{4,}$/;
+            userId.onkeyup = function(event){
+                if(this.value.length < 4){
+                    msg[0].textContent = '아이디는 4자 이상이여야합니다.';
+                    msg[0].className = ' dont';
+                } else if(this.value.length >=4){
+                    if(regId.test(this.value)){
+                        msg[0].textContent = '중복확인이 필요합니다.';
+                    }else{
+                        msg[0].textContent = '아이디는 영문자, 숫자, -, _ 문자만 사용가능합니다.';
+                    }
+                }
+            }
+            userId.onblur = function(){
+                if(this.value.length >=4){
+                    msg[0].textContent = '사용가능한 아이디입니다.';
+                    msg[0].className = 'msg';
+                }
+            }
+            let userPw = document.getElementById('userPw');
+            let regPw = /^[a-zA-Z0-9!@#$%^&*()]{8,20}$/;
+            userPw.addEventListener('keyup', function(){
+                let pwValidResult = /[a-z]/.test(this.value)+
+                                    /[A-Z]/.test(this.value)+
+                                    /[0-9]/.test(this.value)+
+                                    /[^a-zA-Z0-9]/.test(this.value);
+                if(regPw.test(this.value)&&pwValidResult>=3){
+                    msg[1].textContent = '사용 가능한 비밀번호 입니다.';
+                    msg[1].className = 'msg';
+                }else{
+                    msg[1].textContent = '비밀번호는 8~20자의 영문 대/소문자, 숫자, 특수문자 등 3종류 이상으로 조합해주세요.';
+                    msg[1].className = 'msg dont';
+                }
+                if(/[0-9][4]/.test(this.value)){
+                    msg[1].textContent = '비밀번호는 연속되거나 동일한 숫자, 문자(4개 이상)의 입력을 제한합니다.';
+                    msg[1].className = 'msg dont';
+                }
+            })
+            let userPwConfirm = document.getElementById('userPwConfirm');
+            function fn_userPwComfirm(userPw, userPwConfirm){
+                if(userPw.value == userPwConfirm){
+                    userPwConfirm.parentNode.className = 'input checked';
+                } else{
+                    userPwConfirm.parentNode.className = 'input';
+                    msg[2].textContent = '비밀번호가 일치하지 않습니다.';
+                    msg[2].className = 'msg dont';
+                }
+            }
+            userPw.addEventListener('keyup', function(){
+                if(userPwConfirm.value == ''){
+                    msg[2].textContent = '필수정보입니다.'
+                    msg[2].className = 'msg dont';
+                }
+                fn_userPwComfirm(userPw, userPwConfirm);
+            });
+            userPwConfirm.addEventListener('keyup', function(){
+                fn_userPwComfirm(userPw, userPwConfirm);
+            });
+            let userName = document.getElementById('userName');
+            let regName = /^[a-zA-Z가-힣]{1,30}$/;
+            function fn_validName(){
+                if(userName.value == ''){
+                    userName,parentNode.className = 'input';
+                    msg[3].textContent = '이름을 입력해주세요';
+                    msg[3].className = 'msg dont'
+                } else if(regName.test(this.value)){
+                    userName.parentNode.className = 'input checked';
+                }else{
+                    userName.parentNode.className = 'input';
+                    msg[3].textContent = '이름은 한글, 영문 대소문자만 사용해주세요.';
+                    msg[3].className = 'msg dont';
+                }
+            }
+            userName.addEventListener('keyup', fn_validName);
+            userName.addEventListener('blur', function(){
+                fn_validName();
+            })
+
+            let yearList = document.querySelector('#year > ul');
+            let strYearList = '<li><a href = "#" data-uri="' + y + '">' + y + '</a></li>';
+            for(let y = 2007; y >= 1911; y--){
+                strYearList += '<li><a href="#" data-uri="' + y + '">' + y +  '</a></li>';
+            }
+            yearList.innerHTML = strYearList;
+            let year = document.getElementById('year');
+            year.addEventListener('click', function(){
+                yearList.className = 'lst show';
+            });
+            year.addEventListener('mouseout', function(){
+                yearList.className ='lst';
+            });
+            year.addEventListener('mouseover',function(){
+                yearList.className = 'lst show';
+            });
+            let yearlink = document.querySelectorAll('#year>ul>li>a');
+            let yearValue = document.getElementById('year_value');
+            for(let i = 0; i< yearlink.length; i++){
+                yearLink[i].addEventListener('click',function(){
+                    yearValue.textContent = this.textContent;
+                });
+            }
+            let userEmail = document.getElementById('userEmail');
+            let regEmail = /^[a-zA-Z-0-9_-]+@[a-zA-Z0-9]+([.][a-zA-Z]{2,}){1,2}$/;
+            function fn_vaildEmail(){
+                if(userEmail.value == ''){
+                    msg[4].textContent = '이메일을 입력해 주세요';
+                    msg[4].className = 'msg dont';
+                    userEmail.parentNode.className = 'input';
+                }else if(regEmail.test(userEmail.value)){
+                    
+                }
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    <header class="join_header">
+        <h1 class="logo">
+            <a href="#">TMON</a>
+        </h1>
+    </header>
+    <section class="join_form">
+        <h2 class="join_title">회원정보 입력</h2>
+        <label for="userId">아이디</label>
+        <div class="input">
+            <input id="userId" type="text" placeholder="아이디를 입력하세요">
+        </div>
+        <p class="msg">영문/숫자 4자 이상을 입력해 주세요.</p>
+
+        <label for="userPw">비밀번호</label>
+        <div class="input">
+            <input id="userPw" type="password" placeholder="비밀번호를 입력하세요">
+        </div>
+        <p class="msg">8 ~ 20자의 영문 대/소문자, 숫자, 특수문자를 사용하세요.</p>
+
+        <label for="userPwConfirm">비밀번호 재확인</label>
+        <div class="input">
+            <input id="userPwConfirm" type="password" placeholder="비밀번호를 다시 입력하세요">
+        </div>
+        <p class="msg"></p>
+        <label for="userName">이름</label>
+        <div class="input">
+            <input id="userName" type="text" placeholder="이름을 입력하세요">
+        </div>
+        <p class="msg"></p>
+        
+        <label for="year">생년월일<span class="no_required">(선택)</span></label>
+        <div class="date">
+            <div class="select_box" id="year">
+                <div id="year_value">년도</div>
+                <ul class="lst"></ul>
+            </div>
+            <div class="select_box" id="month"></div>
+            <div class="select_box" id="day"></div>
+        </div>
+
+        <label>성별<span class="no_required">(선택)</span></label>
+        <div class="two_selector">
+            <label class="selector">
+                <input type="radio" name="gender" value="M">
+                <span>남자</span>
+            </label>
+            <label class="selector">
+                <input type="radio" name="gender" value="F">
+                <span>여자</span>
+            </label>
+        </div>
+
+        <label for="userEmail">이메일</label>
+        <div class="input">
+            <input id="userEmail" type="text" placeholder="이메일을 입력해 주세요">
+        </div>
+        <p class="msg">이메일을 입력해 주세요.</p>
+    </section>
+</body>
+</html>

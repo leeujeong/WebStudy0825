@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--1. submit 하는 방법-->
+    <form id="form1" action="https://search.naver.com/search.naver">
+        <input type="text" name="query" id="query1">
+        <button>검색</button> <!--submit 수행 ( buttton 태그의 기본 이벤트)-->
+    </form>
+    <script>
+        let fomr1 = document.getElementById('form1');
+        let query = document.getElementById('query1');
+        fomr1.onsubmit = function(event){
+            if(query1.value == ''){
+                alert('검색어를 입력하세요');
+                query1.focus();       // 검색창으로 커서 보내줌.
+                event.preventDefault();     // 기본이벤트 방지 (submit 방지)
+            }
+        }
+    </script>
+
+    <!--2. submit 하는 방법-->
+    <form id="form2" action="https://search.naver.com/search.naver" onsubmit="return searchFunc()">
+        <input type="text" name="query" id="query2">
+        <button>검색</button>
+    </form>
+    <script>
+        function searchFunc(){
+            let form2 = document.getElementById('form2');
+            let query2 = document.getElementById('query2');
+            if(query2.value == ''){
+                alert('검색어는 필수입니다.');
+                query2.focus();
+                return false;       //submit 하지 않겠다.
+            }
+            return true;            //submit 하겠다.
+        }
+    </script>
+    
+    <!-- 3. submit 하는 방법 -->
+    <form id="form3">
+        <input type="text" name="query" id="query3">
+        <input type="button" value="검색" id="search_btn">      <!-- 기본 이벤트가 없는 일반 버튼 -->
+    </form>
+    <script>
+        let form3 = document.getElementById('form3');
+        let query3 = document.getElementById('query3');
+        let search_btn = document.getElementById('search_btn');
+        search_btn.onclick = function(){
+            if(query3.value = ''){
+                alert('검색어를 꼭 입력 해주세요')
+                query3.focus();
+                return;     // 이벤트 리스너 종료
+            }
+            form3.action = "https://search.naver.com/search.naver";
+            form3.submit();
+        }
+    </script>
+    <!-- 4. name 속성으로 스크립트 작업하기 -->
+    <form>
+        <input type="text" name="query">
+        <input type="button" value="검색" onclick="naverSearch(this.form)">
+    </form>
+    <script>
+        function naverSearch(f){
+            if(f.query.value == ''){
+                alert('검색어를 입력해주세요');
+                f.query.focus();
+                return;
+            }
+            f.action = "https://search.naver.com/search.naver";
+            f.submit();
+        }
+    </script>
+
+    <!-- 5. form 전체 선택 체크 박스 구현하기 -->
+    <form>
+        <h1>약관 동의</h1>
+        <input type="checkbox" id="check_all">
+        <label for="check_all">모두 동의합니다.</label>
+        <br><br>
+        <input type="checkbox" class="check" id="service">
+        <label for="service">이용약관에 동의합니다.</label>
+        <br>
+        <input type="checkbox" class="check" id="privacy">
+        <label for="privacy">개인정보 수집에 동의합니다.</label>
+        <br>
+        <input type="checkbox" class="check" id="location">
+        <label for="location">위치정보 수집에 동의합니다.</label>
+        <br>
+        <input type="checkbox" class="check" id="promotion">
+        <label for="promotion">프로모션 정보 수신에 동의합니다.</label>
+        <br>
+    </form>
+    <script>
+        let checkAll = document.getElementById('check_all');
+        let check = document.getElementsByClassName('check');
+
+
+        // 1. 전체 선택을 클릭한 경우
+        checkAll.onclick = function(){
+            for(let i = 0; i < check.length; i++){
+                check[i].checked = checkAll.checked;
+            }
+        }
+
+        // 2. 개별 선택을 클릭한 이유
+        for(let i = 0; i<check.length; i++){
+            check[i].onclick = function(){
+                // 4개 중 하나를 클릭하면 모든 개별 체크항목을 살펴봐서
+                // 하나라도 체크가 해제되어 있으면 전체 선택 해제
+                // 모두 체크가 되어있으면 전체 선택 체크
+                for(let j = 0; j<check.length; j++){
+                    if(check[j].checked == false){
+                        checkAll.checked = false;
+                        return;     //이벤트 리스너 종료
+                    }
+                }
+                checkAll.checked = true;
+            }
+        } 
+    </script>
+    <!-- 6. 정규식 다루기
+            1) regular expression
+            2) 특정 문자열이 조건에 부합하는지 판단하기 위한 표현식이다.
+            3) 자바스크립트의 정규식 작성
+                let regExp = /정규식/;
+            4) 정규식 체크 메소드
+                (1) '문자열'.match(정규식) : null(만족 안 함)
+                (2) 정규식.test('문자열')  : false(만족 안 함), true(만족함) => 주로사용
+            5) 정규식 메타 문자
+                (1) a       : 문자 a를 의미함.
+                (2) a|b     : 문자 a 또는 문자 b를 의미함.
+                (3) .       : 모든 문자 중 1글자를 의미함.
+                (4) ^a      : 문자 a로 시작함.
+                (5) a$      : 문자 a로 끝남.
+                (6) a*      : 문자 a가 여러번 나타남. 안 나타나도 됨.
+                (7) a+      : 문자 a가 여러번 나타남. 1번은 나타나야함.
+                (8) a{n}    : 문자 a가 n번 나타남.
+                (9) a{n,}   : 문자 a가 n번 이상 나타남
+                (10) a{n,m} : 문자 a가 n번 이상 m번 이하 나타남.
+            6) 정규식 문자 클래스
+                (1) [a]     : 문자 a를 의미함.
+                (2) [.]     : 문자 .를 의미함. (\.)
+                (3) [ab]    : 문자 a 또는 문자 b를 의미함
+                (4) [^a]    : 문자 a를 제외함.
+                (5) ^[a]    : 문자 a로 시작함.
+                (6) [a]$    : 문자 a로 끝남.
+                (7) [0-9]   : 0~9를 의미함. 숫자를 의마함.
+                (8) [a-z]   : a~z를 의미함, 소문자를 의미함
+                (9) [A-Z]   : A~Z를 의미함. 대문자를 의미함
+                (10) [가-힣] : 가~힇 의미함. 한글을 의미함.
+                (11) \s     : 공백 문자(space)를 의미함
+                (12) \S     : 공백 문자가 아님을 의미함.
+                (13) \d     : 숫자(digit)를 의미함. [0-9]와 같음.
+                (14) \D     : 숫자가 아님을 의미함.
+                (15) \w     : 문자(word)를 의미함. 영숫자와 밑줄과 같음([a-zA-Z0-9_])
+                (16) \W     : 문자가 아님을 의미함.
+    -->
+    <form>
+        <input type="text" name="tel" id="tel">
+        <input type="button" value="검증" id="verify_btn">
+    </form>
+    <script>
+        let regTel = /^01[0169]-[0-9]{3,4}-[0-9]{4}$/;
+        let verifyBtn = document.getElementById('verify_btn')
+        let tel = document.getElementById('tel')
+        verifyBtn.onclick = function(){
+            if(regTel.test(tel.value)){
+                alert('핸드폰 번호가 맞습니다.')
+            }else{
+                alert('번호가 아닙니다.')
+            }
+        }
+    </script>
+</body>
+</html>

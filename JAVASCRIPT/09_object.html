@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .product_list{
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        .product_list > li{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            color: white;
+            text-align: center;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>lastBuildDate</td>
+                    <td colspan="2" id="lastBuildDate"></td>
+                </tr>
+                <tr>
+                    <td>total</td>
+                    <td colspan="2" id="total"></td>
+                </tr>
+                <tr>
+                    <td>title</td>
+                    <td>link</td>
+                    <td>description</td>
+                </tr>
+            </thead>
+            <tbody id="items">
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let result = {
+            'lastBuildDate': '2021-10-15',
+            'total': 3,
+            'items': [
+                {
+                    'title': '오징어게임',
+                    'link': 'https://www.naver.com',
+                    'description': '이제 모두 오징어가 될 시간이다.'
+                },
+                {
+                    'title': '갯마을 차차차',
+                    'link': 'https://www.google.com',
+                    'description': '다함께 차차차~'
+                },
+                {
+                    'title': '더길티',
+                    'link': 'https://www.kakao.com',
+                    'description': '장난 전화 하지 마세욤'
+                }
+            ]
+        };
+        document.getElementById('lastBuildDate').textContent = result.lastBuildDate;
+        document.getElementById('total').textContent = result.total;
+        let strItems = '';
+        let items = result.items;
+        for(let i = 0; i<items.length; i++){
+            strItems += '<tr>';
+            strItems += '<td>' + items[i].title + '</td>';
+            strItems +='<td>' + items[i].link + '</td>';
+            strItems += '<td>' + items[i].description + '</td>';
+            strItems += '</tr>';
+        }
+        for(let i = 0; i<items.length; i++){
+            strItems += '<tr>'
+            for(let property in items[i]){
+                strItems += '<td>' + items[i][property]
+            }
+        }
+
+
+    // 4. this
+    //  1) 객체 자신을 나타내는 키워드이다.
+    //  2) 객체 내부에서 다른 속성(property)을 호출할 때 사용
+    let car = {
+        'model' : 'bmw520d',
+        'drive' : function(){
+            console.log(this.model + '타고 drive');
+        }
+    }
+    car.drive();
+    // 5. 속성의 추가, 수정, 삭제
+    //  1) 속성(property)의 동적 처리(dynamic processor)가 가능하다.
+    //     없던 속성을 나중에 추가할 수 있다.
+    //  2) 아미 존재한 속성을 호출해서 수정할 수 있다.
+    //  3) 삭제를 위한 키워드는 delete이다.
+    let computer = {}; //빈 객체
+    computer.maker = 'Apple';
+    computer.model = 'Mac book';
+    console.log(computer);
+    computer.maker = 'LG';
+    computer.model = 'gram';
+    console.log(computer);
+    delete computer.maker;
+    console.log(computer);
+    // 6. 생성자함수
+    //  1) 객체를 만드는 함수
+    //  2) 일반 함수와 구분을 위해 관례산 첫글자를 대문자로 만든다.
+    //  3) 객체생성 new 키워드로 한다.
+    //  4) 전달된 매개변수를 혹성으로 저자하기 위해서 this 키워드를 활용한다.
+    function Book(bookNo, title, author){
+        this.bookNo = bookNo;
+        this.title  = title;
+        this.author = author;
+    }
+    let book1 = new Book(1001, '어린왕자', '생텍쥐베리');
+    let book2 = new Book(1002, '소나기', '황순원');
+    console.log(book1);
+    console.log(book2);
+    // 7. 프로토타입(prototype)
+    //  1) 객체들이 공유하는 하나의 메모리 공간.
+    //  2) 공통적으로 가지는 값, 속성 사용하지 않는 함수는 프로토타입에 저장하는것이 좋다.
+    //  3) 프로토타입 사용방법
+    //      (1) 객체 :  객체.prototype.속성 = 값
+    //                 객체.prototype.속성 = function(){}
+    //      (2) 생성자 함수 : this.__proto__.속성 = 값
+    //                     this.__proto__.속성 = function(){}
+    function Product(name, price){
+        this.name = name;
+        this.price = price;
+    }
+    let product1 = new Product('3분쩌장', 1500);
+    Product.prototype.maker = '오뚜기';
+    let product2 = new Product('3분카레', 2000);
+    console.log(product1);
+    console.log(product2);
+    function Korean(name){
+        this.name = name;
+        this.__proto__.country = 'Korea';
+        this.__proto__.tourSlogan = function(){
+            console.log('Image your Korean!');
+        }
+    }
+    let korean1 = new Korean('이유정');
+    let korean2 = new Korean('이유리');
+    console.log(korean1);
+    console.log(korean2);
+
+    // 8. JSON
+    // 1) JavaScript Object Notation(자바스크립트 객체 표현법)
+    // 2) 서버(백) - 클라이언트(프론트) 간 데이터 교환 표준 형식 중 하나 (가장 Hot)
+    // 3) 실제로는 객체(JSON)를 문자열 형식으로 주고 받는다.
+    // 4) 객체와 문자열 변환은 자바스크립트 내장 객체 JSON을 사용한다.
+    // 5) 객체(JSON) -> 문자열 : 서버로 객체를 보낼때 사용(보낼때)
+    //     JSON.stringify(객체)
+    // 6) 문자열 -> 객체(JSON) : 서버로부터 받은 문자열 객체를 실제 객체로 바꿀 때 사용(받을때)
+    //     JSON.parse(문자열)
+    let song = {
+        'title' : 'Next Level',
+        'singer':'aespa'
+    };
+    let strSong = JSON.stringify(song);
+    console.log(strSong);
+
+    let song2 = JSON.parse(strSong);
+    console.log(song2);
+    
+    </script>
+
+    <!--연습2-->
+    <div id="box2">
+
+    </div>
+
+    <script>
+        let products = [
+            {
+                'name' : 'Product1',
+                'price' : '15,000',
+                'star' : '별'
+            },
+            {
+                'name' : 'Product2',
+                'price' : '25,000',
+                'star' : '별별'
+            },
+            {
+                'name' : 'Product3',
+                'price' : '26,000',
+                'star' : '별별별'
+            },
+        ]
+        let productsList = '<ul class = "product_list">';
+        for (let i=0; i<products.length; i++){
+           productsList += '<li>';
+           productsList += products[i].name+'<br>';
+           productsList += products[i].price+'<br>';
+           productsList += products[i].star+'<br>';
+           productsList += '</li>';
+        }
+        for (let i=0; i<products.length; i++){
+           productsList += '<li>';
+           for(let property in products[i]){
+             productsList += products[i][property]+'<br>';  
+           }
+           productsList += '</li>';
+        }
+        productsList += '</ul>';
+        document.getElementById('box2').innerHTML = productsList;
+    </script>
+    <!--연습 3. Student 객체 생성-->
+    <div id="box3"></div>
+    <script>
+        function Student(name, kor, eng, mat){
+            this.name = name;
+            this.kor = kor;
+            this.eng = eng;
+            this.mat = mat;
+            this.__proto__.getAverage = function(){
+                return (this.kor + this.eng + this.mat) /3
+            };
+            this.__proto__.getGrade = function(){
+                if(this.getAverage() >= 90){
+                    return 'A';
+                }else if(this.getAverage() >=80){
+                    return 'B';
+                }else{
+                    return 'F';
+                }
+            }
+        }
+        let students = [
+            new Student('tom', 90,90,90),
+            new Student('alice', 80, 80, 80),
+            new Student('tomas', 40, 40, 40)
+        ];
+        let studentList = '<table border = "1"><thead><tr><td>이름</td><td>국어</td><td>영어</td><td>수학</td><td>평균</td><td>학점</td></tr></thead>'
+        studentList += '<tbody>';
+        for(let i = 0; i<students.length; i++){
+            studentList += '<tr>';
+            studentList += '<td> ' + students[i].name +'</td>';
+            studentList += '<td> ' + students[i].kor +'</td>';
+            studentList += '<td> ' + students[i].eng +'</td>';
+            studentList += '<td> ' + students[i].mat +'</td>';
+            studentList += '<td> ' + students[i].getAverage() +'</td>';
+            studentList += '<td> ' + students[i].getGrade() +'</td>';
+            studentList += '</tr>'
+        }
+        studentList += '</tbody>';
+        studentList +='</table>';
+        document.getElementById('box3').innerHTML = studentList;
+    </script>
+</body>
+</html>

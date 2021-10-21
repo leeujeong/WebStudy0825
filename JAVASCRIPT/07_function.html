@@ -130,6 +130,32 @@
         func10(40);
         func10(50, 60);
         func10(70, 80, 90);
+        // 3. arguments 객체
+        //  1) 모든 함수는 매개변수를 선언하지 않아도 인수를 사용할 수 있다.
+        //  2) 모든 인수는 자동으로 arguments 객체에 저장된다.
+        //  3) arguments 객체는 배열처럼 사용할 수 있다.
+        function func11(){
+            console.log(arguments);
+            console.log(arguments[0]);
+        }
+        func11('이유정');
+    </script>
+    <!--6. 타이머 함수-->
+    <div id="boom"></div>
+    <script>
+        //1. 5초 후에 폭탄 터트리기
+        setTimeout(function(){
+            document.getElementById('boom').innerHTML = '<h1>펑</h1>';
+        },5000);
+
+        //연습. 카운트다운 폭탄
+        var countDown = 5;
+        setInterval(function(){
+            if(countDown <0){
+                return;
+            }
+            document.getElementById('boom').innerHTML = '<h1>' + countDown-- + '</h1>'
+        },1000);
     </script>
 </body>
 </html>
