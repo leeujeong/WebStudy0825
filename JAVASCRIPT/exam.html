@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box1"></div>
+    <script>
+        let table = document.createElement('table');
+        table.setAttribute('border',1);
+        document.getElementById('box1').appendChild(table);
+        let tbody = document.createElement('tbody');
+        table.appendChild(tbody);
+
+        for(let row = 1; row <=4; row++){
+            let tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            for(let col=1; col<=3; col++){
+                let td = document.createElement('td');
+                switch(num){
+                    case 10: td.textContent='*'; break;
+                    case 11: td.textContent ='0'; break;
+                    case 12: td.textContent='#'; break;
+                    default: td.textContent=num; 
+                }
+                tr.appendChild(td);
+                num++;
+            }
+        }
+    </script>
+</body>
+</html>
