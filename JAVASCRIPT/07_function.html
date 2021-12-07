@@ -1,161 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        /*
+            1. 선언적 함수
+                1) 함수명이 있다.
+                2) 함수 정의 : 함수를 만드는 것
+                    function 함수명(매개변수) {
+                        함수본문 
+                    }
+                3) 함수 호출 : 함수는 사용하는 것
+                    함수명(인수);
+            2. 익명 함수
+                1) 함수명이 없다.
+                2) 익명 함수는 변수에 저장해서 사용한다.
+                3) 호이스팅 되지 않는다. 반드시 함수 정의를 먼저 해야 한다.
+                4) 함수 정의
+                    (1) 일반 익명 함수
+                        function(매개변수) {
+                            함수본문
+                        }
+                    (2) 화사표 함수
+                        (매개변수) => {
+                            함수본문
+                        }
+            3. 콜백 함수
+                1) 함수의 매개변수에 전달하는 함수이다.
+                    매개변수가 함수를 저장하므로, 매개변수를 함수처럼 사용한다.
+                2) 선언적 함수와 익명 함수를 모두 사용할 수 있다.
+                    주로 익명 함수를 콜백으로 사용한다.
+            4. 자기 호출 함수
+                1) 함수를  정의하면 곤바로 호출된다.
+                2) 함수 정의와 호출이 동시에 진행된다.
+                3) 형식
+                        (function(매개변수){
+                            함수본문
+                        })(인수);
+            5. 인수와 매개변수
+                1) 전개연산자 : ...매개변수
+                2) 인수와 매개변수의 갯수가 서로 다를 수 있다.
+                   인수가 전달되지 않는 매개변수를 처리하기 위한 디폴트 개념이 존재한다.
+                3) 전달되 모든 인수를 저장하는 arguments 객체(유사 배열)가 있다.
+            6. 타이머 함수
+                1) 한 번만 동작하는 함수
+                    (1) var a = setTimeout(동작시킬함수, 시간(밀리초(ws)));
+                    (2) clearTimeout(id);  // 해당 id를 가진 타이머 취소
+                2) 반복 동작하는 함수
+                    (1) var id = srtTnterval(동작시킬함수, 시간(밀리초));
+                    (2) cleasrInteval(id)
+        */
+    </script>
 </head>
 <body>
-    <!--1. 선언적 함수-->
+    
+    <!-- 1. 선언적 함수 -->
     <script>
         func1();
-        function func1(){
-            console.log('func1() 함수본문');
+        function func1() {
+            console.log('fubc1() 함수 본문');
         }
         func1();
-
-        func2('정승호', 31);
-        function func2(name, age){      //매개변수 선언(var, let, const) 없이 변수명만 작성한다.
-            console.log('이름 : '+ name + '나이 : '+ age);
-        }
-        func2('이유정',27);
+        ////////////////////////////////////
+        func2('민셩태', 44)
+        function func2(name, age) {     // 매개변수는 선언(var, let, const) 없이 변수명만 작성한다.
+            console.log('이름: ' + name + ',나이: ' + age);
+        } 
+        func2('박종진', 28)
     </script>
 
-    <!--2. 익명 함수-->
+    <!-- 2. 익명 함수 -->
     <script>
-        // 1. 일반익명함수
-        let func3= function(){
+        // 1. 일반 일명 함수
+        let func3 = function() {
             console.log('일반 익명 함수 본문');
         }
-        func3();    //변수를 함수처럼 사용
-
+        func3(); // 변수를 함수처럼 사용한다.
         // 2. 화살표 함수
-        let func4 = () =>{
-            console.log('화살표 함수 본문');
+        let func4 = () => {
+            console.log('화살표 함수 본문')
         }
-        func4();
-
+        func4(); // 변수를 함수처럼 사용한다.
         // 3. 연습
-        let func5 = function(age){
-            if (age < 20){
+        let func5 = function(age) {
+            if (age < 20) {
                 console.log('미성년자');
-            }else {
+            } else {
                 console.log('성인');
             }
-        } 
-        func5(25);
-
-        let func6 = (age)=>{
-            if (age < 20){
+        }
+        func5(24);
+        let func6 = (age) => {
+            if (age < 20) {
                 console.log('미성년자');
-            }else {
+            } else {
                 console.log('성인');
-            } 
+            }
         }
         func6(5);
     </script>
-
-    <!--3. 콜백 함수-->
+    
+    <!-- 3. 콜백 함수 -->
     <script>
-        //1. 선언적 함수를 콜백으로 전달하기
-        function whoAreYou(name, age){
-            console.log('내 이름은 ' + name + '이고, 내 나이는 ' + age + '살입니다.');
+        // 1. 선언적 함수를 콜백으로 전달하기
+        function whoAreYou(name, age) {
+            console.log('내이름은 ' + name + '이고, 내 나이는 ' + age + '살이니다.');
         }
-        function func7(callback, name, age){    // callback : 함수가 전달되는 매개변ㅇ수
+        function func7 (callback, name, age) {  // cakllback : 함수가 전달되는 매개변수
             callback(name, age);
         }
-        func7(whoAreYou, '이유정', 27);         // 선언적 함수는 '함수명'을 전달한다.
-
-        //2. 익명함수를 콜백으로 전달하기
-        function func8(callback, name, age){
+        func7(whoAreYou, '민경태', 44); // 선어적 함수는 '함수명'을 전달한다.
+        // 2. 익명 함수를 콜백으로 전달하시
+        function func8(callback, name, age) {
             callback(name, age);
         }
-        func8(function(name){
-            console.log('내 이름은 ' + name + '이고, 내 나이는 ' + age + '살입니다.');
-        }, '이유정', 27);
-        func8((name, age)=>{
-            consolelog('내 이름은 ' + name + '이고, 내 나이는 ' + age + '살입니다.');
-        }, '정승호', 31);
-
-        //3. 연습
-        function howMany(callback, count){
-            for(let i = 0; i < count; i++){
+        func8(function(name, age) {
+            console.log('내이름은 ' + name + '이고, 내 나이는 ' + age + '살');
+        }, '박종진', 28);
+        func8((name, age) => {
+            console.log('내이름은 ' + name + '이고, 내 나이는 ' + age + '살');
+        }, '제임스 본드', 55)
+        // 3. 연습
+        function howMany(callback, count) {
+            for (let i = 0; i < count; i++){
                 callback();
             }
         }
-        howMany(function(){
-            consloe.log('Hello World');
-        }, 3);      //전달된 함수가 3번 실행시켜 줌
+        howMany(function() {
+            console.log('Hello World');
+        }, 3); // 전달된 함수 3번 실행시켜 줌
     </script>
-
-    <!--4. 자기 호출 함수-->
+    
+    <!-- 4. 자기 호출 함수 -->
     <script>
         (function(name, age){
-            console.log('내 이름은 ' + name + '이고, 내년에는 ' + (age + 1) + '살입니다.');
-        })('이유정', 27);
+            console.log('내 이름은 ' + name + ', 내년에는 ' + (age + 1) + '살')
+        })('재임타', 28);
     </script>
 
-    <!--5. 인수와 매개변수-->
+    <!-- 5. 인수와 매개변수 -->
     <script>
-        //1. 전개 연산자
-        function func9(...args){
-            console.log(args[0] + ', ' + args[1]);
+        // 1. 전게 연산자
+        function func9(...args) {
+            console.log(args[0] + ',' + args[1]);
         }
         func9();
         func9(10);
-        func9(20, 30);
-
-        //2. 인수와 매개변수의 갯수
-        //   디폴트 처리하기
-        function func10(a, b){
-            //디폴트.a 가 undefined라면 100을 사용함.
-            //방법 1.
-            if (a == undefined){
-                a = 100;
-            }
-            //방법 2.
-            //undefined 는 false 로 인식한다.
-            if (!a){
-                a = 100;
-            }
-            //방법 3.
-            true || (a = 100);  //short curcuit evaluation
-                                // OR 연산자는 하나라도 true가 나오면 전체 결과가 true 이므로 더이상 연산을 진행하지 않는다.
-            false || (a = 100); //인수가 전달 안된 매개변수는 undefined 이므로 false와 같다.
-            a || (a = 100);     //a로 인수가 전달되지 않으면 false || (a = 100);으로 처리되므로 a = 100이 동작한다.
-
-            console.log(a + ', '+ b);
+        func9(20,30);
+        // 2. 인수와 매개뱐수의 갯수
+        //    디폴트 처리하기  
+        function func10(a, b) {
+            // 디폴트. a가 undefined라면 100을 사용함.
+            // 방범1.
+            // if (a == undefined) {
+            //     a = 100;
+            // }
+            // 방범2.
+            // undefined는 false로 인식한다.
+            // if (!a) {
+            //     a = 1000;
+            // }
+            // 방범3.
+            // true || (a = 100); // short circuit evaluation 
+                                  // OR 연산자 하나라도 true가 나오면 전체 결과가 true이므로 
+                                  // 더 이상 연산을 진행하지 않는다.
+            // false || (a == 100);
+            // 인수가 전달 안된 매개변수는 undefined이므로 false와 같다.
+            a || (a = 100);  // a로 인수가 전달되지 않으면 false || (a = 100); 으로 처리되므로
+                             // a = 100이 동작한다
+            console.log(a + ',' + b);
         }
         func10();
         func10(40);
         func10(50, 60);
         func10(70, 80, 90);
         // 3. arguments 객체
-        //  1) 모든 함수는 매개변수를 선언하지 않아도 인수를 사용할 수 있다.
-        //  2) 모든 인수는 자동으로 arguments 객체에 저장된다.
-        //  3) arguments 객체는 배열처럼 사용할 수 있다.
+        //    1) 모든 함수는 매개변수를 선언하지 않아도 인수를 사용할 수 있다,
+        //    2) 모든 인수는 자동으로 argument 객체에 저장된다.
+        //    3)  arguments 객체는 배열처럼 사용할 수 있다,
         function func11(){
             console.log(arguments);
-            console.log(arguments[0]);
+            console.log(arguments[0])
         }
-        func11('이유정');
+        func11('박종진');
     </script>
-    <!--6. 타이머 함수-->
-    <div id="boom"></div>
+    
+    <!-- 6. 타이머 함수 -->
+    <dir id="boom"></dir>
     <script>
-        //1. 5초 후에 폭탄 터트리기
-        setTimeout(function(){
-            document.getElementById('boom').innerHTML = '<h1>펑</h1>';
-        },5000);
-
-        //연습. 카운트다운 폭탄
+        // 1. 5초 후에 폭탄을 터트리기
+        /*
+        var a = setTimeout(function(){
+            document.getElementById('boom').innerHTML = '<h1>펑</h1>'
+        }, 5000);
+        */
+        // 연습. 카운트 다운 폭탄.
+        // 5 -> 4 -> 3 -> 2-> 1 -> 펑
+        /*
+        var countDown = 5;
+        (function countDownBoom(){
+            setTimeout(function(){
+                if (countDown == 0) {
+                    document.getElementById('boom').innerHTML = '<h1>펑</h1>'
+                    return;
+                }
+                document.getElementById('boom').innerHTML = '<h1>' + countDown--; + '</h1>'
+                countDownBoom();    // 자신이 자신 부르는 호출 = 재귀호출
+            }, 1000);
+        })();
+        */
+        // 2. 카운트 다운
         var countDown = 5;
         setInterval(function(){
-            if(countDown <0){
+            if (countDown == 0) { // 0까지 보여주려면 if (countDown < 0 ) {return;}
                 return;
             }
-            document.getElementById('boom').innerHTML = '<h1>' + countDown-- + '</h1>'
-        },1000);
+            document.getElementById('boom').innerHTML = '<h1>' + countDown-- + '</h1>';
+        }, 1000);
     </script>
+    
 </body>
 </html>
